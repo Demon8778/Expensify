@@ -6,8 +6,6 @@ import uuid from 'uuid';
 
 import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
 
-import 'react-dates/lib/css/_datepicker.css';
-
 class ExpenseListFilters extends React.Component {
     state = {
         calendarFocused: null
