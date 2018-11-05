@@ -7,7 +7,7 @@ import configureStore from './store/configureStore';
 
 import { startSetExpenses } from './actions/expenses';
 import getVisibleExpenses from './selectors/expenses';
-import './firebase/firebase';
+import { firebase } from './firebase/firebase';
 import 'normalize.css/normalize.css';
 import 'react-dates/lib/css/_datepicker.css';
 import './styles/styles.scss';
@@ -25,9 +25,9 @@ const store = configureStore();
 // }, 3000);
 
 const state = store.getState();
-console.log('Hello');
+// console.log('Hello');
 const visibleExpenses = getVisibleExpenses(state.expenses,  state.filters);
-console.log(visibleExpenses);
+// console.log(visibleExpenses);
 
 const jsx = (
     <Provider store={store}>
@@ -41,3 +41,10 @@ store.dispatch(startSetExpenses()).then(() => {
     ReactDOM.render(jsx, document.getElementById('app'));
 });
 
+firebase.auth().onAuthStateChanged((user) => {
+    if(user) {
+        console.log('Logged In');
+    } else {
+        console.log('Logged Out');
+    }
+});
